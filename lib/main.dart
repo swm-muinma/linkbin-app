@@ -5,9 +5,9 @@ import 'package:linkbin_app/service/api/group/fake_group_api.dart';
 import 'utils/bloc/navigation_bloc.dart';
 import 'widgets/common/global_navigation_bar.dart';
 import 'widgets/common/global_app_bar.dart';
-import 'screens/home_screen.dart';
+import 'screens/link_screen.dart';
 import 'screens/search_screen.dart';
-import 'screens/share_screen.dart';
+import 'screens/tag_screen.dart';
 
 void main() {
   runApp(LinkBinApp());
@@ -30,10 +30,10 @@ class LinkBinApp extends StatelessWidget {
 
 class Screen extends StatelessWidget {
   final Map<Type, Widget Function()> screenMap = {
-    HomeScreenState: () => HomeScreen(bookMarkService: FakeBookMarkService()),
     SearchScreenState: () =>
         SearchScreen(bookMarkService: FakeBookMarkService()),
-    SettingScreenState: () => ShareScreen(
+    LinkScreenState: () => LinkScreen(bookMarkService: FakeBookMarkService()),
+    TagScreenState: () => TagScreen(
           bookMarkService: FakeBookMarkService(),
           groupService: FakeGroupService(),
         ),

@@ -10,48 +10,47 @@ class GlobalNavigationBar extends StatelessWidget {
       builder: (context, state) {
         int currentIndex;
         switch (state.runtimeType) {
-          case HomeScreenState _:
-            currentIndex = HOME_SCREEN_INDEX;
-            break;
           case SearchScreenState _:
             currentIndex = SEARCH_SCREEN_INDEX;
             break;
-          case SettingScreenState _:
-            currentIndex = SETTING_SCREEN_INDEX;
+          case LinkScreenState _:
+            currentIndex = LINK_SCREEN_INDEX;
+            break;
+          case TagScreenState _:
+            currentIndex = TAG_SCREEN_INDEX;
             break;
           default:
-            currentIndex = HOME_SCREEN_INDEX;
+            currentIndex = SEARCH_SCREEN_INDEX;
         }
 
         return BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: (index) {
             switch (index) {
-              case HOME_SCREEN_INDEX:
-                BlocProvider.of<NavigationBloc>(context).add(NavigateToHome());
-                break;
               case SEARCH_SCREEN_INDEX:
                 BlocProvider.of<NavigationBloc>(context)
                     .add(NavigateToSearch());
                 break;
-              case SETTING_SCREEN_INDEX:
-                BlocProvider.of<NavigationBloc>(context)
-                    .add(NavigateToSetting());
+              case LINK_SCREEN_INDEX:
+                BlocProvider.of<NavigationBloc>(context).add(NavigateToLink());
+                break;
+              case TAG_SCREEN_INDEX:
+                BlocProvider.of<NavigationBloc>(context).add(NavigateToTag());
                 break;
             }
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: Icon(Icons.circle),
+              label: 'All links',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.circle),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Setting',
+              icon: Icon(Icons.circle),
+              label: 'Set Tag',
             ),
           ],
         );

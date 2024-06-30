@@ -21,7 +21,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(Icons.home),
           onPressed: () {
-            BlocProvider.of<NavigationBloc>(context).add(NavigateToHome());
+            BlocProvider.of<NavigationBloc>(context).add(NavigateToSearch());
           },
         ),
         IconButton(

@@ -6,21 +6,21 @@ import 'package:linkbin_app/widgets/book_mark/book_mark_list_widget.dart';
 import 'package:linkbin_app/widgets/common/icon_card.dart';
 import 'package:linkbin_app/widgets/group/group_list_widget.dart';
 
-class ShareScreen extends StatefulWidget {
+class TagScreen extends StatefulWidget {
   final BookMarkService bookMarkService;
   final GroupService groupService;
 
-  const ShareScreen({
+  const TagScreen({
     super.key,
     required this.groupService,
     required this.bookMarkService,
   });
 
   @override
-  _ShareScreenState createState() => _ShareScreenState();
+  _TagScreenState createState() => _TagScreenState();
 }
 
-class _ShareScreenState extends State<ShareScreen> {
+class _TagScreenState extends State<TagScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

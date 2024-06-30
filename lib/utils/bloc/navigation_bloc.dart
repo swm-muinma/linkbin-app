@@ -3,34 +3,34 @@ import 'package:bloc/bloc.dart';
 // Events
 abstract class NavigationEvent {}
 
-class NavigateToHome extends NavigationEvent {}
-
 class NavigateToSearch extends NavigationEvent {}
 
-class NavigateToSetting extends NavigationEvent {}
+class NavigateToLink extends NavigationEvent {}
+
+class NavigateToTag extends NavigationEvent {}
 
 // States
 abstract class NavigationState {}
 
-class HomeScreenState extends NavigationState {}
-
 class SearchScreenState extends NavigationState {}
 
-class SettingScreenState extends NavigationState {}
+class LinkScreenState extends NavigationState {}
+
+class TagScreenState extends NavigationState {}
 
 // Bloc
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
-  NavigationBloc() : super(HomeScreenState()) {
-    on<NavigateToHome>((event, emit) {
-      emit(HomeScreenState());
-    });
-
+  NavigationBloc() : super(SearchScreenState()) {
     on<NavigateToSearch>((event, emit) {
       emit(SearchScreenState());
     });
 
-    on<NavigateToSetting>((event, emit) {
-      emit(SettingScreenState());
+    on<NavigateToLink>((event, emit) {
+      emit(LinkScreenState());
+    });
+
+    on<NavigateToTag>((event, emit) {
+      emit(TagScreenState());
     });
   }
 }
