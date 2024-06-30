@@ -41,20 +41,25 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: GlobalAppBar(title: 'LinkBin'),
-      body: BlocBuilder<NavigationBloc, NavigationState>(
-        builder: (context, state) {
-          final screenBuilder = screenMap[state.runtimeType];
-          if (screenBuilder != null) {
-            return screenBuilder();
-          }
-          return const Center(
-            child: Text('Default Screen'),
-          );
-        },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: GlobalAppBar(title: 'LinkBin'),
+        body: BlocBuilder<NavigationBloc, NavigationState>(
+          builder: (context, state) {
+            final screenBuilder = screenMap[state.runtimeType];
+            if (screenBuilder != null) {
+              return screenBuilder();
+            }
+            return const Center(
+              child: Text('Default Screen'),
+            );
+          },
+        ),
+        bottomNavigationBar: GlobalNavigationBar(),
       ),
-      bottomNavigationBar: GlobalNavigationBar(),
     );
   }
 }

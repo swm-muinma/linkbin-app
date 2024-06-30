@@ -8,6 +8,15 @@ class SearchTextWidget extends StatefulWidget {
 
 class _SearchTextWidgetState extends State<SearchTextWidget> {
   final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  bool _searchVisible = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   void _search() {
     print("Searching for: ${_controller.text}");
@@ -21,19 +30,24 @@ class _SearchTextWidgetState extends State<SearchTextWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          TagFilterWidget(),
-          TextField(
-            controller: _controller,
-            decoration: const InputDecoration(
-              hintText: '검색어를 입력하세요',
-              prefixIcon: Icon(Icons.search),
+          Focus(
+            focusNode: _focusNode,
+            child: TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                hintText: '검색어를 입력하세요',
+                prefixIcon: Icon(Icons.search),
+              ),
             ),
+            onFocusChange: (hasFocus) {
+              setState(() {
+                _searchVisible = hasFocus;
+              });
+            },
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _search,
-            child: const Text('북마크 내역 중에 검색하기'),
-          ),
+          TagFilterWidget(),
+          if (_searchVisible) TagFilterWidget(),
         ],
       ),
     );
