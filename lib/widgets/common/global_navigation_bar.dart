@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../utils/bloc/navigation_bloc.dart';
-import '../../utils/constants/navigation_constants.dart';
+import 'package:linkbin_app/utils/bloc/navigation_bloc.dart';
+import 'package:linkbin_app/utils/constants/navigation_constants.dart';
 
 class GlobalNavigationBar extends StatelessWidget {
   @override
@@ -10,13 +10,13 @@ class GlobalNavigationBar extends StatelessWidget {
       builder: (context, state) {
         int currentIndex;
         switch (state.runtimeType) {
-          case SearchScreenState _:
+          case SearchScreenState:
             currentIndex = SEARCH_SCREEN_INDEX;
             break;
-          case LinkScreenState _:
+          case LinkScreenState:
             currentIndex = LINK_SCREEN_INDEX;
             break;
-          case TagScreenState _:
+          case TagScreenState:
             currentIndex = TAG_SCREEN_INDEX;
             break;
           default:
@@ -39,17 +39,26 @@ class GlobalNavigationBar extends StatelessWidget {
                 break;
             }
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.circle),
+              icon: Icon(Icons.circle,
+                  color: currentIndex == LINK_SCREEN_INDEX
+                      ? Colors.deepPurple
+                      : Colors.grey),
               label: 'All links',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.circle),
+              icon: Icon(Icons.circle,
+                  color: currentIndex == SEARCH_SCREEN_INDEX
+                      ? Colors.deepPurple
+                      : Colors.grey),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.circle),
+              icon: Icon(Icons.circle,
+                  color: currentIndex == TAG_SCREEN_INDEX
+                      ? Colors.deepPurple
+                      : Colors.grey),
               label: 'Set Tag',
             ),
           ],
